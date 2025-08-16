@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TVS Credit – Agentic AI Customer Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f0fdf4, #dcfce7); /* light green gradient */
+      color: #14532d;
+    }
+
+    header {
+      background: #047857; /* strong green */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      color: #065f46;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #166534;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .card h3 {
+      margin: 10px 0;
+      color: #047857;
+    }
+
+    /* Chat widget styles */
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,.3);
+    }
+
+    .chat-box {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      max-height: 500px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      overflow: hidden;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-body {
+      padding: 12px;
+      height: 320px;
+      overflow-y: auto;
+      background: #f0fdf4;
+    }
+
+    .chat-footer {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-footer input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-right: 6px;
+    }
+
+    .chat-footer button {
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .bot-message, .user-message {
+      margin: 8px 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      max-width: 75%;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .bot-message {
+      background: #dcfce7;
+      color: #065f46;
+      align-self: flex-start;
+    }
+
+    .user-message {
+      background: #bbf7d0;
+      color: #064e3b;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>TVS Credit – Agentic AI Demo</h2>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to Agentic AI Customer Service</h1>
+    <p>This prototype shows how our next-gen AI assistant can provide personalized, proactive support to customers – beyond the existing TIA chatbot.</p>
+  </section>
+
+  <section class="features">
+    <div class="card">
+      <h3>24/7 Support</h3>
+      <p>Always available to handle customer queries instantly.</p>
+    </div>
+    <div class="card">
+      <h3>Personalized</h3>
+      <p>Remembers past interactions for tailored service.</p>
+    </div>
+    <div class="card">
+      <h3>Multichannel</h3>
+      <p>Available on Website, WhatsApp, App, and Voice.</p>
+    </div>
+    <div class="card">
+      <h3>Proactive</h3>
+      <p>Sends EMI reminders, offers, and follow-ups automatically.</p>
+    </div>
+  </section>
+
+  <!-- Chat Widget -->
+  <div id="agentic-chat" class="chat-box">
+    <div class="chat-header">
+      <div class="chat-title">🤖 TIA+ (Agentic)</div>
+      <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="bot-message">👋 Hi there! I’m TIA+, your AI assistant. How can I help you today?</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="checkEnter(event)">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Floating Button -->
+  <button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+  <script>
+  function toggleChat() {
+    const chat = document.getElementById("agentic-chat");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+    chat.style.flexDirection = "column";
+  }
+
+  function checkEnter(event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  }
+
+  async function sendMessage() {
+    let input = document.getElementById("chat-input");
+    let msg = input.value.trim();
+    if (msg === "") return;
+
+    let chatBody = document.getElementById("chat-body");
+
+    // Show user message
+    let userMsg = document.createElement("div");
+    userMsg.classList.add("user-message");
+    userMsg.textContent = msg;
+    chatBody.appendChild(userMsg);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+    input.value = "";
+
+    // Call Flask backend
+    try {
+      let res = await fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+
+      let data = await res.json();
+
+      // Show bot response
+      let botMsg = document.createElement("div");
+      botMsg.classList.add("bot-message");
+      botMsg.textContent = data.reply;
+      chatBody.appendChild(botMsg);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+    } catch (err) {
+      let botMsg = document.createElement("div");
+      botMsg.classList.add("bot-message");
+      botMsg.textContent = "⚠️ Sorry, the service is not reachable right now.";
+      chatBody.appendChild(botMsg);
+    }
+  }
+</script>
+</body>
+</html>
